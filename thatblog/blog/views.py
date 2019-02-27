@@ -15,9 +15,9 @@ class AboutView(TemplateView):
     template_name = 'about.html'
 
 class PostListView(ListView):
-     model = Post
+    model = Post
 
-     def get_queryset(self):
+    def get_queryset(self):
         return Post.objects.filter(published_date__lte=timezone.now()).order_by('-published_date')
 
 
@@ -30,7 +30,7 @@ class CreatePostView(LoginRequiredMixin,CreateView):
     form_class = PostForm 
     model = Post         
 
- class PostUpdateView(LoginRequiredMixin,UpdateView):
+class PostUpdateView(LoginRequiredMixin,UpdateView):
     login_url = '/login/'
     redirect_field_name = 'blog/post_detail.html'
     form_class = PostForm 
