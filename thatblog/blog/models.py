@@ -42,3 +42,5 @@ class Comment(model.Model):
 
     def __str__(self):
         return self.text    
+
+        
