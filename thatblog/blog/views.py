@@ -1,14 +1,16 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
-from django.shortcuts import render,get_object_or_404,redirect
-from django.utils import timezone
-from blog.models import Post,Comment 
-from blog.forms import PostForm,CommentForm
-from django.urls import reverse_lazy
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.views.generic import (TemplateView,ListView,DetailView,CreateView,UpdateView,DeleteView)
+from django.shortcuts import get_object_or_404, redirect, render
+from django.urls import reverse_lazy
+from django.utils import timezone
+from django.views.generic import (CreateView, DeleteView, DetailView, ListView,
+                                  TemplateView, UpdateView)
+
+from blog.forms import CommentForm, PostForm
+from blog.models import Comment, Post
 
 # Create your views here.
 
