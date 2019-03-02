@@ -1,4 +1,4 @@
-!<!DOCTYPE html>
+<!DOCTYPE html>
 {% load staticfiles %}
 <html>
 <head>
@@ -12,6 +12,11 @@
     <!-- Bootstrap-->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script
+    src="https://code.jquery.com/jquery-3.3.1.min.js"
+    integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+    crossorigin="anonymous"></script>
     <!--Medium Style Editor obtained from yawbe/medium editor github-->
     <script src="//cdn.jsdelivr.net/npm/medium-editor@latest/dist/js/medium-editor.min.js"></script>
     <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/medium-editor@latest/dist/css/medium-editor.min.css" type="text/css" media="screen" charset="utf-8">
@@ -24,35 +29,38 @@
 <body>
     <!-- LOADER -->
     <div id="loading-wrapper">
-        <div id="loading-text">LOADING</div>
-        <div id="loading-content"></div>
-    </div>
+            <div id="loading-text">LOADING</div>
+            <div id="loading-content"></div>
+        </div>
     <!-- NAVBAR -->
-    <nav class="navbar navbar-default techfont custom-navbar">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container">
-            <ul class="nav navbar-nav">
-                    <li><a class="navbar-brand bigbrand " href="{% url 'post_list' %}">home</a></li>
-                    <li><a href="{% url 'about' %}">About</a></li>
-                    <li><a href="https://www.github.com/akdgtl">Github</a></li>
-                    <li><a href="https://www.linkedin.com/akdgtl">LinkedIn</a></li>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                      </button>
+            <ul class="navbar-nav mr-auto">
+                    <li><a class="navbar-brand bigbrand " href="{% url 'post_list' %}">Blogista</a></li>
+                    <li class="nav-item active"><a class="nav-link" href="{% url 'about' %}">About</a></li>
+                    <li class="nav-item active"><a class="nav-link" href="https://www.github.com/akdgtl">Github</a></li>
+                    <li class="nav-item active"><a class="nav-link" href="https://www.linkedin.com/akdgtl">LinkedIn</a></li>
             </ul>
 
-            <ul class="nav navbar-nv navbar-right">
+            <ul class="navbar-nav float-md-right">
                 {% if user.is_authenticated %}
                 <li>
-                    <a href="{% url 'post_new' %}">New Post</a>
+                    <a class="nav-link" href="{% url 'post_new' %}">New Post</a>
                 </li>
                 <li>
-                    <a href="{% url 'post_draft_list' %}">Drafts</a>
+                    <a class="nav-link" href="{% url 'post_draft_list' %}">Drafts</a>
                 </li>
                 <li>
-                    <a href="{% url 'logout' %}">Logout</a>
+                    <a class="nav-link" href="{% url 'logout' %}">Logout</a>
                 </li>
                 <li>
-                        <a>Welcome: {{% user.username %}}</a>
+                        <a class="nav-link">Welcome: {{ user.username }}</a>
                 </li>
                     {% else %}
-                    <li><a class="nav navbar navbar-right" href="{% url 'login' %}"><span class="glyphicon glyphicon-user "></span></a></li>
+                    <li><a class="nav-link navbar-nav navbar-right" href="{% url 'login' %}">LOGIN</a></li>
 
                 {% endif %}
             </ul>
@@ -72,6 +80,10 @@
             </div>
         </div>
     </div>
-    
+    <script>
+            $(window).on('load',function() {
+              $('#loading-wrapper').remove();
+            })
+          </script>
 </body>
 </html>
